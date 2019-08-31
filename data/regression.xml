@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="regression">
+	<test name="AddNewAccount">
+		<parameter name="username" value="techfiosdemo@gmail.com" />
+		<parameter name="password" value="abc123" />
+		<parameter name="invalidUsername" value="lsdjflsdjfljsdlfj" />
+		<parameter name="password" value="abc123" />
+		<parameter name="accountTitle" value="Boat Loan" />
+		<parameter name="description" value="Boat Money" />
+		<parameter name="balance" value="30000" />
+		<classes>
+			<class name="test.NewAccountTest" />
+		</classes>
+	</test>
+</suite>

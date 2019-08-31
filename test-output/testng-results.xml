@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="regression" duration-ms="17556" started-at="2019-08-25T18:00:55Z" finished-at="2019-08-25T18:01:13Z">
+    <groups>
+    </groups>
+    <test name="AddNewAccount" duration-ms="17556" started-at="2019-08-25T18:00:55Z" finished-at="2019-08-25T18:01:13Z">
+      <class name="test.NewAccountTest">
+        <test-method status="PASS" signature="OpenANewAccount(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.NewAccountTest@8bd1b6a]" name="OpenANewAccount" duration-ms="17522" started-at="2019-08-25T18:00:55Z" finished-at="2019-08-25T18:01:13Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[techfiosdemo@gmail.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[abc123]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Boat Loan]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Boat Money]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[30000]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- OpenANewAccount -->
+      </class> <!-- test.NewAccountTest -->
+    </test> <!-- AddNewAccount -->
+  </suite> <!-- regression -->
+</testng-results>
