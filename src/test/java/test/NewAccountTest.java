@@ -1,54 +1,70 @@
 package test;
 
-import java.util.List;
-import java.util.Random;
-
 import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import page.ListAccountPage;
 import page.LoginPage;
-import page.NewAccountPage;
-import page.SideNavigation;
 import util.BrowserFactory;
 
 public class NewAccountTest {
+WebDriver driver;
 
-	@Test (priority = 1)
-	@Parameters({"username", "password", "accountTitle", "description", "balance"})
-	public void OpenANewAccount(String a, String  Password, String accountTitle, String description, String balance ) throws InterruptedException {
-		WebDriver driver = BrowserFactory.startBrowser();
-		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		loginPage.login(a, Password);
-
-		SideNavigation sidenav = PageFactory.initElements(driver, SideNavigation.class);
-		sidenav.goToNewAccountPage();
-
-		Random rnd = new Random();
-		String expectedTitle = accountTitle + rnd.nextInt(999);
-		System.out.println("Expected dat: " + expectedTitle);
-
-		NewAccountPage newAccountPage = PageFactory.initElements(driver, NewAccountPage.class);
-		newAccountPage.fillInTheNewAccountForm(expectedTitle, description, balance);
-
-		// Get the list of column data from the page class
-		ListAccountPage listAccountPage = PageFactory.initElements(driver, ListAccountPage.class);
-		List<String> columnData = listAccountPage.getColumnDataFor("Account");
-
-		Assert.assertTrue(isDataPresent(expectedTitle, columnData), "New Account did not post!!!!");
-
-	}
-
-	private boolean isDataPresent(String expectedTitle, List<String> columnData) {
-		for (String cellData : columnData) {
-			if (cellData.equalsIgnoreCase(expectedTitle)) {
-				System.out.println("Displayed Data: " + cellData);
-				return true;
-			}
-		}
-		return false;
-	}
+// Every Page must have a constructor to invite the driver
+public NewAccountTest(WebDriver driver) {
+	this.driver = driver;
 }
+
+@BeforeMethod
+public void launcBrowser() {
+	driver = BrowserFactory.startBrowser();	
+	
+}
+
+@Test
+public void validUsersShouldBeAbleToAddaCategory() throws InterruptedException
+{
+	//got to website
+driver.get("http://techfios.com/test/101/");
+//call login method from LoginPage
+
+LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
+
+loginpage.ClickOnAddaCategoryButton("BMW 7 Series");
+Thread.sleep(5000);
+
+// Validate a user is not able to add duplicate category
+
+Assert.assertTrue(loginpage.isWarningMessageDisplayed(), "Warning Message is not Displayed");
+Thread.sleep(5000);
+
+
+//Validate the month drop down
+
+loginpage.clickOnBackButton();
+loginpage.selectMonthDropDown();
+loginpage.isMonthDropDownHasMonthsDisplayed();
+Assert.assertTrue(loginpage.isMonthDropDownHasMonthsDisplayed(), "Months in the drop down box do not match");
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+	
